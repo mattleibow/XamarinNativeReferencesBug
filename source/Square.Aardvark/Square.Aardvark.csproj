@@ -1,0 +1,56 @@
+<Project Sdk="MSBuild.Sdk.Extras/2.0.31">
+  <PropertyGroup>
+    <TargetFrameworks>xamarinios1.0</TargetFrameworks>
+    <IsBindingProject>true</IsBindingProject>
+    <AssemblyName>Square.Aardvark</AssemblyName>
+    <RootNamespace>Square.Aardvark</RootNamespace>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PackageId>Square.Aardvark</PackageId>
+    <Title>Aardvark bindings for Xamarin.iOS</Title>
+    <Summary>Aardvark is a library that makes it dead simple to create actionable bug reports.</Summary>
+    <Description>Aardvark is a library that makes it dead simple to create actionable bug reports.</Description>
+    <Authors>mattleibow</Authors>
+    <Owners>mattleibow</Owners>
+    <Copyright>Square and Matthew Leibowitz.</Copyright>
+    <PackageProjectUrl>https://github.com/mattleibow/square-bindings</PackageProjectUrl>
+    <PackageIconUrl>https://raw.githubusercontent.com/mattleibow/square-bindings/master/icons/square.aardvark_256x256.png</PackageIconUrl>
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <PackageTags>calendar xamarin android monodroid</PackageTags>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Xamarin.Swift4" Version="4.0.0.2" />
+    <PackageReference Include="Xamarin.Swift4.Core" Version="4.2.1.1" />
+    <PackageReference Include="Xamarin.Swift4.CoreGraphics" Version="4.2.1.1" />
+    <PackageReference Include="Xamarin.Swift4.CoreImage" Version="4.2.1.1" />
+    <PackageReference Include="Xamarin.Swift4.Darwin" Version="4.2.1.1" />
+    <PackageReference Include="Xamarin.Swift4.Dispatch" Version="4.2.1.1" />
+    <PackageReference Include="Xamarin.Swift4.Foundation" Version="4.2.1.1" />
+    <PackageReference Include="Xamarin.Swift4.ObjectiveC" Version="4.2.1.1" />
+    <PackageReference Include="Xamarin.Swift4.QuartzCore" Version="4.2.1.1" />
+    <PackageReference Include="Xamarin.Swift4.UIKit" Version="4.2.1.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Square.CoreAardvark" Version="2.0.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Square.CoreAardvark\Square.CoreAardvark.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="ApiDefinition.cs" />
+    <Compile Remove="StructsAndEnums.cs" />
+    <ObjcBindingApiDefinition Include="ApiDefinition.cs" />
+    <ObjcBindingCoreSource Include="StructsAndEnums.cs" />
+    <NativeReference Include="..\native\Aardvark.framework" Kind="Framework" ForceLoad="true" SmarkLink="true" Frameworks="MessageUI" LinkerFlags="-ObjC" />
+  </ItemGroup>
+  <!--
+  <Target Name="_RemoveNativeReferencesManifest" AfterTargets="BuiltProjectOutputGroup">
+    <ItemGroup>
+      <_BuiltProjectOutputGroupOutputIntermediate Remove="$(OutDir)$(_DeploymentTargetApplicationManifestFileName)" />
+      <BuiltProjectOutputGroupOutput Remove="$(ProjectDir)$(OutDir)$(_DeploymentTargetApplicationManifestFileName)" />
+    </ItemGroup>
+  </Target>
+  -->
+</Project>
